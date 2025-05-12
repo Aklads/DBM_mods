@@ -1,11 +1,12 @@
 module.exports = {
-  name: 'Add pontos a número MOD',
+  name: 'Add pontos em números MOD',
   section: 'Other Stuff',
   meta: {
     version: '2.1.7',
     preciseCheck: false,
     author: 'Aklads',
-    authorUrl: 'https://github.com/Aklads/DBM_mods',
+    authorUrl: 'https://github.com/Aklads',
+    downloadUrl: 'https://github.com/Aklads/DBM_mods',
     modAuthors: ['Aklads'],
   },
 
@@ -15,11 +16,16 @@ module.exports = {
     } else {
         desccor = "#fff";
     }
-
+  
     return data.description
         ? `<font color="${desccor}">${data.description}</font>`
         : `<font color="${desccor}">${data.number} | ${data.varName}</font>`;
 },
+
+  variableStorage(data, varType) {
+    if (parseInt(data.storage, 10) !== varType) return;
+    return [data.varName, 'String'];
+  },
 
   fields: ["descriptioncolor", "description", "descriptionx",'number', 'storage', 'varName'],
 
@@ -47,15 +53,14 @@ module.exports = {
     </div>
 
 
-<div style="float: left; width: 60%; padding-top: 8px;">
-  <p><u>Nota:</u><br>
-  Este mod adiciona pontos a um número para cada 1000.</p>
+<div style="float: left; width: 100%; padding-top: 8px;">
+  <p><u>Nota:</u> Este mod adiciona pontos a um número para cada 1000.</p>
 </div>
-<br><br><br>
+<br>
 
 <div style="float: left; width: 70%; padding-top: 8px;">
   <span class="dbminputlabel">Número para adicionar pontos</span>
-  <input id="number" class="round" type="text" placeholder="1000000">
+  <input id="number" class="round" type="text" placeholder="">
 </div>
 <br><br><br><br>
 
@@ -65,7 +70,7 @@ module.exports = {
 <br><br><br>
 
 <div style="text-align: center; float: left; width: 100%; padding-top: 8px;">
-  <p><b>Example:</b> 1000000 será convertido para 1.000.000</p>
+  <p><b>Exemplo:</b> 1000000 será convertido para 1.000.000</p>
 </div>`;
   },
 
@@ -78,7 +83,7 @@ module.exports = {
     const data = cache.actions[cache.index];
     const number = this.evalMessage(data.number, cache);
 
-    // Use regex para adicionar vírgulas ao número
+    // Use regex to add commas to the number
     const numberWithCommas = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
     const storage = parseInt(data.storage, 10);
