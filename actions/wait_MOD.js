@@ -5,7 +5,7 @@ module.exports = {
     const measurements = ["Millisegundos", "Segundos", "Minutos", "Horas"];
     return `${data.time} ${measurements[parseInt(data.measurement, 10)]}`;
   },
-  meta: { version: "2.1.7", preciseCheck: true, author: 'Aklads', authorUrl: 'https://github.com/Aklads', downloadUrl: 'https://github.com/Aklads/DBM_mods' },
+  meta: { version: "2.1.7", preciseCheck: true, author: 'Aklads', authorUrl: 'https://github.com/Aklads', downloadUrl: 'https://github.com/Aklads/DBM_mods', modAuthors: ['Aklads'] },
 
   fields: ["time", "measurement"],
 
